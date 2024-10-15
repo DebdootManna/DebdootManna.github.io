@@ -1,25 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('background-video');
-    
-    // Add event listeners for troubleshooting
-    video.addEventListener('loadeddata', () => {
-        console.log('Video loaded successfully');
+    // Add a subtle parallax effect to the background
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        document.body.style.backgroundPosition = `0px ${scrolled * 0.5}px`;
     });
-    
-    video.addEventListener('error', (e) => {
-        console.error('Error loading video:', e);
-    });
-    
-    // Slow down the video playback
-    video.playbackRate = 0.5;
-    
-    // Video crossfade logic
-    video.addEventListener('ended', () => {
-        video.classList.add('fade-out');
-        setTimeout(() => {
-            video.currentTime = 0;
-            video.classList.remove('fade-out');
-            video.play();
-        }, 2000);
+
+    // Add a hover effect to social links
+    const socialLinks = document.querySelectorAll('.social ul li a');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseover', () => {
+            link.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.8)';
+        });
+        link.addEventListener('mouseout', () => {
+            link.style.boxShadow = 'none';
+        });
     });
 });
